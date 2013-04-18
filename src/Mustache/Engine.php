@@ -1,4 +1,4 @@
-<?php
+.<?php
 
 /*
  * This file is part of Mustache.php.
@@ -42,6 +42,8 @@ class Mustache_Engine
     private $charset = 'UTF-8';
     private $logger;
     private $strictCallables = false;
+
+    var $dataPoints = 0;
 
     /**
      * Mustache class constructor.
@@ -150,6 +152,20 @@ class Mustache_Engine
         if (isset($options['strict_callables'])) {
             $this->strictCallables = $options['strict_callables'];
         }
+    }
+
+
+    public function add_data_point($inc=1)
+    {
+        $this->dataPoints += $inc;
+
+        return $this;
+    }
+
+
+    public function count_data_points()
+    {
+        return $this->dataPoints;
     }
 
     /**
@@ -504,6 +520,10 @@ class Mustache_Engine
      */
     public function loadPartial($name)
     {
+
+        //Warren's been hacking at it agian.
+       #$this->add_data_point(1);
+
         try {
             if (isset($this->partialsLoader)) {
                 $loader = $this->partialsLoader;
