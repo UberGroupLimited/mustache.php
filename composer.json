@@ -1,8 +1,8 @@
 {
-    "name": "mustache/mustache",
-    "description": "A Mustache implementation in PHP.",
+    "name": "ubergrouplimited/mustache",
+    "description": ".",
     "keywords": ["templating", "mustache"],
-    "homepage": "https://github.com/bobthecow/mustache.php",
+    "homepage": "https://github.com/UberGroupLimited/mustache.php",
     "type": "library",
     "license": "MIT",
     "authors": [
