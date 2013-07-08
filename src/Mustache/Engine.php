@@ -23,7 +23,7 @@
  */
 class Mustache_Engine
 {
-    const VERSION        = '2.3.0';
+    const VERSION        = '2.3.1';
     const SPEC_VERSION   = '1.1.2';
 
     const PRAGMA_FILTERS = 'FILTERS';
@@ -42,6 +42,8 @@ class Mustache_Engine
     private $charset = 'UTF-8';
     private $logger;
     private $strictCallables = false;
+
+    var $dataPoints = 0;
 
     /**
      * Mustache class constructor.
@@ -152,22 +154,36 @@ class Mustache_Engine
         }
     }
 
+
+    public function add_data_point($inc=1)
+    {
+        $this->dataPoints += $inc;
+
+        return $this;
+    }
+
+
+    public function count_data_points()
+    {
+        return $this->dataPoints;
+    }
+
     /**
      * Shortcut 'render' invocation.
      *
-     * Equivalent to calling `$mustache->loadTemplate($template)->render($data);`
+     * Equivalent to calling `$mustache->loadTemplate($template)->render($context);`
      *
      * @see Mustache_Engine::loadTemplate
      * @see Mustache_Template::render
      *
      * @param string $template
-     * @param mixed  $data
+     * @param mixed  $context (default: array())
      *
      * @return string Rendered template
      */
-    public function render($template, $data)
+    public function render($template, $context = array())
     {
-        return $this->loadTemplate($template)->render($data);
+        return $this->loadTemplate($template)->render($context);
     }
 
     /**
@@ -504,6 +520,10 @@ class Mustache_Engine
      */
     public function loadPartial($name)
     {
+
+        //Warren's been hacking at it agian.
+       #$this->add_data_point(1);
+
         try {
             if (isset($this->partialsLoader)) {
                 $loader = $this->partialsLoader;

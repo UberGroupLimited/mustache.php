@@ -166,6 +166,10 @@ abstract class Mustache_Template
      */
     protected function resolveValue($value, Mustache_Context $context, $indent = '')
     {
+
+        //We need to log the fact we're making a datapoint change;
+        $this->mustache->add_data_point(1);
+
         if (($this->strictCallables ? is_object($value) : !is_string($value)) && is_callable($value)) {
             return $this->mustache
                 ->loadLambda((string) call_user_func($value))

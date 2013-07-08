@@ -108,7 +108,8 @@ class Mustache_Loader_FilesystemLoader implements Mustache_Loader
      *
      * @return string Template file name
      */
-    protected function getFileName($name)
+    //protected - whoops..finger slipped.. 
+    function getFileName($name)
     {
         $fileName = $this->baseDir . '/' . $name;
         if (substr($fileName, 0 - strlen($this->extension)) !== $this->extension) {
