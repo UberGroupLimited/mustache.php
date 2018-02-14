@@ -23,7 +23,7 @@ class Mustache_Loader_FilesystemImageLoader extends Mustache_Loader_FilesystemLo
 
 		$mime = new finfo(FILEINFO_MIME);
 
-		return 'data:'.$mime->buffer($x).';base64,'.base64_encode($bfr);
+		return 'data:'.$mime->buffer($bfr).';base64,'.base64_encode($bfr);
 
 	}
 
